@@ -42,23 +42,17 @@ const batch = [
 
 const validateCred = (arr) => {
   let sum = 0;
-  let count = 1;
-  for (let i = arr.length - 1; i >= 0; i--) {
-    if (count % 2 !== 0) {
-      sum += arr[i];
-      count++;
-    } else if (arr[i] * 2 > 9) {
-      sum += arr[i] * 2 - 9;
-      count++;
-    } else {
-      sum += arr[i] * 2;
-      count++;
-    }
-  }
+  let reverseArr = arr.slice().reverse();
+  reverseArr.forEach((item, index) => {
+    if (index % 2 === 0) {
+      sum += item;
+    } else if (item * 2 > 9) {
+      sum += item * 2 - 9;
+    } else sum += item * 2;
+  });
   if (sum % 10 === 0) return true;
   return false;
 };
-
 const findInvalidCards = (arr) => {
   return arr.filter((nestedArr) => !validateCred(nestedArr));
 };
@@ -89,4 +83,3 @@ const idInvalidCardCompanies = (arr) => {
   return result;
 };
 console.log(idInvalidCardCompanies(batch));
-// console.log(findInvalidCards(batch));
