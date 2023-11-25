@@ -53,6 +53,7 @@ const validateCred = (arr) => {
   if (sum % 10 === 0) return true;
   return false;
 };
+
 const findInvalidCards = (arr) => {
   return arr.filter((nestedArr) => !validateCred(nestedArr));
 };
@@ -63,19 +64,19 @@ const idInvalidCardCompanies = (arr) => {
     if (!validateCred(nestedArr)) {
       switch (nestedArr[0]) {
         case 3:
-          if (!result.includes('Amex')) result.push('Amex');
+          if (!result.includes("Amex")) result.push("Amex");
           break;
         case 4:
-          if (!result.includes('Visa')) result.push('Visa');
+          if (!result.includes("Visa")) result.push("Visa");
           break;
         case 5:
-          if (!result.includes('Mastercard')) result.push('Mastercard');
+          if (!result.includes("Mastercard")) result.push("Mastercard");
           break;
         case 6:
-          if (!result.includes('Discover')) result.push('Discover');
+          if (!result.includes("Discover")) result.push("Discover");
           break;
         default:
-          result.push('Company not found');
+          result.push("Company not found");
           break;
       }
     }
@@ -83,3 +84,11 @@ const idInvalidCardCompanies = (arr) => {
   return result;
 };
 console.log(idInvalidCardCompanies(batch));
+
+
+const convertStrToNumArr = (str) => {
+  return str.split('').map(Number)
+}
+
+const creditcard = convertStrToNumArr("4485514486933548")
+console.log(validateCred(creditcard))
